@@ -108,7 +108,7 @@ module.exports = function(RED) {
                             sendOptions.messages.push(message);
                         });
 		    }
-                    else{
+                    else {
                         message.value = msg.payload;
                         sendOptions.messages.push(message);
 		    }
