@@ -107,11 +107,11 @@ module.exports = function(RED) {
                             message.value = messageValue;
                             sendOptions.messages.push(message);
                         });
-					}
+		    }
                     else{
                         message.value = msg.payload;
                         sendOptions.messages.push(message);
-					}
+		    }
 
                     node.producer.send(sendOptions).catch((e)=>{
                         node.error("Kafka Producer Error", e);
