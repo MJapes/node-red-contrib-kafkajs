@@ -117,9 +117,7 @@ module.exports = function(RED) {
                         message.headers = Object.keys(message.headers).length === 0 ? msg.headers : message.headers;
                         
                         message.partition = node.sendOptions.partition || msg.partition || null;
-                        message.value = msg.payload;
-                        sendOptions.messages.push(message);
-					}
+		            }
 
                     node.producer.send(sendOptions).catch((e)=>{
                         node.error("Kafka Producer Error", e);
