@@ -107,8 +107,8 @@ module.exports = function(RED) {
                             message.value = messageValue;
                             sendOptions.messages.push(message);
                         });
-					}
-                    else{
+		    }
+                    else {
                         var message = new Object();
                         
                         message.key = node.sendOptions.key || msg.key || null;
@@ -117,7 +117,7 @@ module.exports = function(RED) {
                         message.headers = Object.keys(message.headers).length === 0 ? msg.headers : message.headers;
                         
                         message.partition = node.sendOptions.partition || msg.partition || null;
-		            }
+	            }
 
                     node.producer.send(sendOptions).catch((e)=>{
                         node.error("Kafka Producer Error", e);
