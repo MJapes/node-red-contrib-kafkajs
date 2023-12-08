@@ -93,22 +93,30 @@ module.exports = function(RED) {
                     sendOptions.timeout = node.sendOptions.timeout || null;
 
                     sendOptions.messages = [];
-                    var message = new Object();
-                    
-                    message.key = node.sendOptions.key || msg.key || null;
-                    
-                    message.headers = node.sendOptions.headers;
-                    message.headers = Object.keys(message.headers).length === 0 ? msg.headers : message.headers;
-                    
-                    message.partition = node.sendOptions.partition || msg.partition || null;
-                    
+					
                     if(msg.payload.constructor === Array){
                         msg.payload.forEach(messageValue => {
+                            var message = new Object();
+                    
+                            message.key = node.sendOptions.key || msg.key || null;
+                            
+                            message.headers = node.sendOptions.headers;
+                            message.headers = Object.keys(message.headers).length === 0 ? msg.headers : message.headers;
+                            
+                            message.partition = node.sendOptions.partition || msg.partition || null;
                             message.value = messageValue;
                             sendOptions.messages.push(message);
                         });
 					}
                     else{
+                        var message = new Object();
+                        
+                        message.key = node.sendOptions.key || msg.key || null;
+                        
+                        message.headers = node.sendOptions.headers;
+                        message.headers = Object.keys(message.headers).length === 0 ? msg.headers : message.headers;
+                        
+                        message.partition = node.sendOptions.partition || msg.partition || null;
                         message.value = msg.payload;
                         sendOptions.messages.push(message);
 					}
